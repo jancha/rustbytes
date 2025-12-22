@@ -25,13 +25,10 @@ mod tests {
                             cycle.push(i.to_string());
                         }
                     }
-                    println!("Cycle found: {:#?}", &cycle);
                     cycles.push(cycle);
                 }
             }
         }
-
-
     }
 
     pub fn topological_sort(graph: &Graph) -> Result<Vec<String>, Vec<String>> {
@@ -96,7 +93,6 @@ mod tests {
             Err(failed)
         }
     }
-
 
     // Helper to validate topo order (checks all edges A->B have pos(A) < pos(B))
     fn is_valid_topo_order(order: &[String], graph: &HashMap<String, Vec<String>>) -> bool {
