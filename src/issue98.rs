@@ -46,7 +46,7 @@ mod tests {
         top.sort_unstable_by_key(|(_node, paths)| *paths);
         let mut failed: Vec<String> = Vec::new();
         let mut order: Vec<String> = Vec::new();
-        let mut seen: HashSet<&String> = HashSet::new();
+        let mut seen: HashSet<String> = HashSet::new();
         // try sort each "top node"
         for (person, _paths) in top {
             if seen.contains(person) {
@@ -57,19 +57,15 @@ mod tests {
             walk_graph(graph, person, &VecDeque::new(), &mut cycles);
 
             if !cycles.is_empty() {
-                //flattern
-                for i in cycles {
-                    for j in i {
-                        if !failed.contains(&j) {
-                            failed.push(j);
-                        }
-                    }
+                if let Some(nodes) = cycles.first() {
+                    nodes.iter().for_each(|x| failed.push(x.to_string()));
                 }
+                return Err(failed); // we need only first cycle
             } else {
                 queue.push_front(person);
                 while let Some(person) = queue.pop_front() {
                     order.push(person.to_string());
-                    seen.insert(person);
+                    seen.insert(person.to_string());
                     if let Some(nodes) = graph.get(person) && !nodes.is_empty() {
                         let mut found_cycle = true;
                         for node in nodes {
