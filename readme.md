@@ -1,7 +1,7 @@
-### Rust Bytes challenge solutions
+# Rust Bytes challenge solutions
 
 
-# Dec 22, 2025 - Issue 98
+### Dec 22, 2025 - Issue 98
 
 Given that a HashMap does not provide a guaranteed order, we are first looping through the HashMap of the graph and building a HashMap of the nodes and paths that take to them.
 Then we are converting the HashMap into a sorted Vec, to get the top nodes (the ones with the fewest paths leading to them).
