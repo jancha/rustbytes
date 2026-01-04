@@ -1,5 +1,9 @@
 # Rust Bytes challenge solutions
 
+### Jan 4, 2026 - Issue 100
+
+Classical problem of vector merging. Key idea - sort first, then loop through and simply expand until there is no overlap, and push the expanded vector in the resultset.
+
 ### Dec 29, 2025 - Issue 99
 
 In this week's task, we are looking at basic functionality of [`Arc`][1] and [`Mutex`][2]. [`Arc`][1] stands for 'Atomically reference counted', which provides a way to safely access shared memory among threads, while [`Mutex`][2] provides a thread-safe interior mutability. The combination of both ensures safe multi-thread access to shared memory (in single thread case consider using  [`Rc`][3] and [`RefCell`][4] alternatives).
