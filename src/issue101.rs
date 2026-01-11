@@ -1,35 +1,38 @@
 // Rust Bytes Challenge Issue #101 Group String Rotations
 
+trait CyclicalEqExt {
+    fn cyclical_eq(&self, other: &str) -> bool;
+}
+
+impl CyclicalEqExt for String {
+    fn cyclical_eq(&self, other: &str) -> bool {
+        let mut right: VecDeque<u8> = self.as_bytes().to_vec().into();
+        let left: VecDeque<u8> = other.as_bytes().to_vec().into();
+        for _i in 0..left.len() {
+            if left == right {
+                return true;
+            }
+            let last = right.pop_back().unwrap();
+            right.push_front(last);
+        }
+        false
+    }
+}
+
 use std::collections::VecDeque;
 
-fn is_cyclically_shifted(left: &str, right: &str) -> bool {
-    let mut right: VecDeque<u8> = right.as_bytes().to_vec().into();
-    let left: VecDeque<u8> = left.as_bytes().to_vec().into();
-
-    for _i in 0..left.len() {
-        if left == right {
-            return true;
-        }
-        let last = right.pop_back().unwrap();
-        right.push_front(last);
-    }
-    false
-}
 pub fn group_rotations(strs: Vec<String>) -> Vec<Vec<String>> {
     let mut result: Vec<Vec<String>> = Vec::new();
-
     'outer: for i in &strs {
         for j in result.iter_mut() {
             let first = j.first().unwrap();
-
-            if is_cyclically_shifted(first, i) {
+            if i.cyclical_eq(first) {
                 j.push(i.clone());
                 continue 'outer;
             }
         }
         result.push(vec![i.clone()]);
     }
-
     result
 }
 
