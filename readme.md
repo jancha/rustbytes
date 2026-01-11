@@ -1,5 +1,10 @@
 # Rust Bytes challenge solutions
 
+### Jan 10, 2026 - Issue 101
+
+This time we are looking into how to compare cyclically shifted strings. Basic idea is to take two strings, convert into `VecDeque<u8>` and rotate the other for `len` times and check if values are matching. If values match, push to the matches and perform outer continue.
+
+
 ### Jan 4, 2026 - Issue 100
 
 Classical problem of vector merging. Key idea - sort first, then loop through and simply expand until there is no overlap, and push the expanded vector in the resultset.
