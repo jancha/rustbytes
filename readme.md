@@ -1,5 +1,18 @@
 # Rust Bytes challenge solutions
 
+### Feb 1, 2026 - Issue 104
+
+This time - tip about use of then() - shorthand for code that checks condition before returning Some(T) or None alternatively.
+
+### Jan 25, 2026 - Issue 103
+
+This time - tip about use of `#[non_exhaustive]` attribute. This prohibits external crates to setup struct directly, and requires use of new() - useful, where internally struct can change over time - forcing use of new() ensures that caller does not break on struct change.
+
+### Jan 18, 2026 - Issue 102
+
+This time - tip about use of `#inline(always)` attribute. Tells compiler to perform the function in place for better performance. Code wise expect slightly larger binary.
+
+
 ### Jan 10, 2026 - Issue 101
 
 This time we are looking into how to compare cyclically shifted strings. Basic idea is to take two strings, convert into `VecDeque<u8>` and rotate the other for `len` times and check if values are matching. If values match, push to the matches and perform outer continue.
