@@ -5,6 +5,6 @@ mod issue99;
 
 mod issue102;
 mod issue103;
-//mod issue104;
+mod issue104;
 
 fn main() {}
